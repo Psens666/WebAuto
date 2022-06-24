@@ -27,17 +27,12 @@ email.send_keys("dominic.lang@kaspauer.de")
 passwd.send_keys("Lemmy2022")
 passwd.submit()
 
-
-
 for course in courses:
     browser.get(course)
     header = browser.find_element(By.CLASS_NAME, "header-cell")
     print(header.text)
     zeit = browser.find_element(By.CLASS_NAME, "times-cell")
     print(zeit.text)
-    #divs = browser.find_elements(By.TAG_NAME, "div")
-    #for div in divs:
-    #    print(div.get_attribute("class"))
     beschreibung = browser.find_element(By.CLASS_NAME, "sc-bjUoiL.sc-hjriPb.jracsp.cktPVE")
     print(beschreibung.text)
     sleep(10)
