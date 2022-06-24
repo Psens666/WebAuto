@@ -1,15 +1,5 @@
 from selenium.webdriver import Chrome
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-from selenium.common.exceptions import TimeoutException
-from time import sleep
-
-from selenium.webdriver.chrome.options import Options
-
-#options = Options()
-#options.add_argument("--headless")
-#options.add_argument("--disable-gpu")
 
 courses = [
     "https://app.kursifant.com/courses/6290bc9413cab319c291a080",
@@ -29,12 +19,14 @@ passwd.submit()
 
 for course in courses:
     browser.get(course)
-    header = browser.find_element(By.CLASS_NAME, "header-cell")
-    print(header.text)
-    zeit = browser.find_element(By.CLASS_NAME, "times-cell")
-    print(zeit.text)
-    beschreibung = browser.find_element(By.CLASS_NAME, "sc-bjUoiL.sc-hjriPb.jracsp.cktPVE")
-    print(beschreibung.text)
-    sleep(10)
+    header = browser.find_element(By.CLASS_NAME, "header-cell").text.split("\n")
+    title = header[0]
+    name = header[1][4:]
+    time = browser.find_element(By.CLASS_NAME, "times-cell").text.split(" ")
+    date = time[0]
+    start = time[1]
+    stop = time[3]
+    description = browser.find_element(By.CLASS_NAME, "sc-bjUoiL.sc-hjriPb.jracsp.cktPVE").text
+    pass
 
 browser.close()
